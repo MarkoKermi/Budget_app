@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :groups
   has_many :payments
 
-  validates :name, presence :true
+  validates :name, presence: true
 end
