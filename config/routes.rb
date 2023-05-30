@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'pages/hello'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+    resources :groups do
+      resources :payments
+    end  
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root to: "home#index"
+  get '/welcome', to: 'welcome#index'
+  root 'groups#index'
 end
