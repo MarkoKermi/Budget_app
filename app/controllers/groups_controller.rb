@@ -14,7 +14,6 @@ class GroupsController < ApplicationController
   end
 
   def new
-    # @group = current_user.groups.new
     @user = current_user
     @group = Group.new
     
@@ -33,15 +32,6 @@ class GroupsController < ApplicationController
      else
       flash[:alert] = 'Category was not created'
      end
-    # @user = current_user
-    # @group = current_user.groups.new(new_group_params)
-    # @group.user_id = @user.id
-
-    # if @group.save
-    #   redirect_to user_groups_path, notice: 'Group was successfully created.'
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
   end
 
   private
