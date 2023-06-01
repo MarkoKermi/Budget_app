@@ -2,6 +2,10 @@
 
 <%= 'Categories'%>
 
+<% @groups.each do |group| %>
+<p><%= group.name%></p>
+<p><%= group.icon%></p>
+<%end%>
 
 <%= link_to 'Add new category', new_user_group_path(user_id: current_user.id) %>
 

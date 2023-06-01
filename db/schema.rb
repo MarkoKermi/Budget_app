@@ -16,11 +16,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_113357) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.bigint "author_id", null: false
+    t.bigint "user_id", null: false
     t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_groups_on_author_id"
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -29,23 +29,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_113357) do
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id", null: false
     t.index ["author_id"], name: "index_payments_on_author_id"
+    t.index ["group_id"], name: "index_payments_on_group_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
+    t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "role", default: "user", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "groups", "users", column: "author_id"
+  add_foreign_key "groups", "users"
+  add_foreign_key "payments", "groups"
   add_foreign_key "payments", "users", column: "author_id"
 end
