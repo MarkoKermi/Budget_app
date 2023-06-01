@@ -3,7 +3,6 @@ class Payment < ApplicationRecord
   has_many :groups, through: :payment_items
   has_many :payment_items
 
-
   validates :amount, presence: true
   validates :user_id, presence: true
   validates :group_id, presence: true

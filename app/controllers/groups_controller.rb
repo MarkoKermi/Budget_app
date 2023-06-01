@@ -1,8 +1,7 @@
 class GroupsController < ApplicationController
-
   before_action :authenticate_user!
-  
-  def index 
+
+  def index
     @user = current_user
     @groups = Group.all
   end
@@ -16,7 +15,6 @@ class GroupsController < ApplicationController
   def new
     @user = current_user
     @group = Group.new
-    
   end
 
   def create
@@ -25,13 +23,13 @@ class GroupsController < ApplicationController
       name: new_group_params['name'],
       icon: new_group_params['icon'],
       user_id: current_user.id
-     )
-     if group.save
+    )
+    if group.save
       flash[:success] = 'Category was created successfully'
       redirect_to user_groups_path(user_id: current_user.id)
-     else
+    else
       flash[:alert] = 'Category was not created'
-     end
+    end
   end
 
   private
@@ -39,5 +37,4 @@ class GroupsController < ApplicationController
   def new_group_params
     params.require(:new_group).permit(:name, :icon)
   end
-
 end
