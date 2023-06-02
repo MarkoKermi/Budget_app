@@ -1,11 +1,13 @@
-<%= render partial:'/groups/shared/nav_page', locals: {title: 'Add a payments', backurl: user_groups_path(user_id:current_user.id)}  %>
+<%= render partial:'/groups/shared/nav_page', locals: {title: 'Budget Categories', backurl: user_groups_path(user_id:current_user.id)}  %>
 
-<%= 'Categories'%>
-
+<div class="container">
 <% @groups.each do |group| %>
-<p><%= group.name%></p>
-<p><%= group.icon%></p>
+<%= link_to user_group_path(user_id:@user.id, id:group.id),
+        class:'custom-category-links' do %>
+    <div class="name"><h3><%= group.name%></h3></div>
+    <div class="image"><%= group.icon%></div>
+  <%end%>
 <%end%>
 
-<%= link_to 'Add new category', new_user_group_path(user_id: current_user.id) %>
-
+<button class="new-catergory-button"><%= link_to 'Add new category', new_user_group_path(user_id: current_user.id) %></button>
+</div>

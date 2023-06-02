@@ -1,4 +1,5 @@
- <div class="custom-category-card-wrapper">
-      <i class="material-icons outlined custom-material-icon"><%= @group.icon%></i>
-      <h4 class="custom-category-card-title text-primary-light"><%= @group.name%></h4> 
- </div>
+<div class="custom-login-actions">
+    <%= link_to new_user_group_payment_path(author_id:@user.id,group_id:@group.id), id:'cancel-link' do %>
+     <button class="blue-button" >Add new payment</button>
+    <% end %> 
+</div>  
