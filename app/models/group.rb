@@ -10,5 +10,4 @@ class Group < ApplicationRecord
   def total_amount_by_group(group_id)
     payments.joins(:payment_items).where(payment_items: { group_id: group_id }).sum('payments.amount')
   end
-  
 end

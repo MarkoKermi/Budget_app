@@ -13,17 +13,15 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = Payment.new(name: payment_params[:name], amount: payment_params[:amount], author_id:current_user.id)
+    @payment = Payment.new(name: payment_params[:name], amount: payment_params[:amount], author_id: current_user.id)
     @group = Group.find(params[:group_id])
-
 
     if @payment.save
       @payment_item = PaymentItem.new(payment_id: @payment.id, group_id: params[:payment_item][:group_id])
-      
+
       if @payment_item.save
         redirect_to user_group_path(current_user, @group), notice: 'Payment was successfully created.'
       end
-      
 
     else
       render :new, status: :unprocessable_entity
