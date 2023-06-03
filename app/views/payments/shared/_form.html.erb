@@ -1,34 +1,41 @@
-<%= form_with model: [group, payment] do |form| %>
-  <header>
+
+<%= form_with model: [current_user, @group, Payment.new], url: user_group_payments_path(current_user, @group) do |form| %>
+
+
+<header>
     <div class="title">
-      <div>
-        <%= link_to back do %>
-          <%= image_tag 'back.svg' %>
+      <div ><%= link_to(:back) do %>
+        <%= content_tag(:div) do %>
+          <i class="material-icons">arrow_back</i>
         <% end %>
-      </div>
-      <div><h2><%= title %></h2></div>
-      <div><%= form.submit "Create" %></div>
+      <% end %></div>
+      <div><h2>New Payment</h2></div>
+      <div><%= form.submit "Submit" %></div>
     </div>
   </header>
 
-  <%= render partial: 'shared/form_errors', locals: { message: 'Invalid payment', entity: payment } if payment.errors.any? %>
-
-  <div class="form-body">
-    <div class="field">
-      <%= form.text_field :amount, placeholder: 'amount' %>
-    </div>
-
-    <div class="field">
-      <%= form.text_field :name, placeholder: 'name' %>
-    </div>
-
-    <div class="check-boxes-field">
-      <% current_user.groups.each do |group| %>
-        <div>
-          <%= form.check_box "groups[#{group.id}]"  %>
-          <%= form.label group.name  %>
-        </div>
-      <% end %>
-    </div>
+<div class="form-body">
+  <%= form_with url: user_group_payments_path(current_user, group_id:@group.id), method: :post,
+  scope: :payment_item , local: true, class: "category-form" do |f| %>
+  <div class="custom-form-field">
+    <%= f.text_field :name, required:true,
+    placeholder:'Name',class:'custom-form-field-text' %>
   </div>
-<% end %>
+  
+  <div class="custom-form-field">
+  <%= f.number_field :amount, step:0.10,min:0 , required:true,
+    placeholder:'Amount', class:'custom-form-field-text' %>
+  </div>
+
+  <div class="custom-form-field-selection">
+  <%= f.collection_select :group_id, @current_user.groups, :id, :name, { prompt: 'Select a group' }, required: true %>
+  </div>
+  
+
+  <%# <div class="custom-login-actions">
+    <%= f.submit 'Create',class:'blue-button' %>
+  <%# </div>  %>
+   
+  <% end %>
+  <% end %>
+</div>

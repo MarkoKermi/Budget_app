@@ -2,11 +2,11 @@
 
 <header>
     <div class="title">
-      <%# <div>
-        <%= link_to welcome_path do %>
-          <%# <%= image_tag 'back.svg' %> 
-        <%# <% end %> 
-      <%# </div> %> 
+      <div ><%= link_to(:back) do %>
+        <%= content_tag(:div) do %>
+          <i class="material-icons">arrow_back</i>
+        <% end %>
+      <% end %></div>
       <div><h2>login</h2></div>
       <div><%= f.submit "Log in" %></div>
     </div>
@@ -29,10 +29,6 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
-  <%# <div class="actions">
-    <%= f.submit "Log in" %>
-  <%# </div> %> 
   </div>
 <% end %>
 

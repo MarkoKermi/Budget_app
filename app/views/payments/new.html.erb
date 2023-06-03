@@ -1,30 +1,6 @@
 
  <%# <%= render partial:'/groups/shared/nav_page', locals: {title: 'Add a spending', backurl: user_group_path(author_id:@user.id,id:@group.id)}  %> 
-<div class="form-category">
-  <%= form_with url:user_group_payments_path(current_user, group_id:@group.id), method: :post,
-  scope: :payment_item , local: true, class: "category-form" do |f| %>
-  <div class="custom-form-field">
-    <%= f.text_field :name, required:true,
-    placeholder:'Name',class:'custom-form-field-text' %>
-  </div>
-  
-  <div class="custom-form-field">
-  <%= f.number_field :amount, step:0.10,min:0 , required:true,
-    placeholder:'Amount', class:'custom-form-field-text' %>
-  </div>
 
-  <div class="custom-form-field-selection">
-    <%= f.label :group_ids, 'Select Group', class:'text-form' %> 
-    <%= f.select :group_ids, @groups.map {|item| [item.name,item.id]},
-    {include_hidden: false},
-    {multiple: true, required: true, size: 5,class:'custom-form-field-multi-select'} %>
-  </div>
-
-  <div class="custom-login-actions">
-    <%= f.submit 'Save',class:'blue-button' %>
-  </div>
-   
-  <% end %>
-</div>
+<%= render partial: 'payments/shared/form', payment:@payment%>
 
 

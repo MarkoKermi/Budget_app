@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # has_many :groups
   # has_many :payments
   has_many :payments, foreign_key: :author_id, dependent: :destroy
-  has_many :groups, foreign_key: :author_id, dependent: :destroy
+  has_many :groups 
 
   validates :name, presence: true
 end

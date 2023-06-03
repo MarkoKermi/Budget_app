@@ -2,11 +2,11 @@
 
 <header>
     <div class="title">
-      <%# <div>
-        <%= link_to back do %>
-          <%# <%= image_tag 'back.svg' %> 
-        <%# <% end %> 
-      <%# </div> %> 
+      <div ><%= link_to(:back) do %>
+        <%= content_tag(:div) do %>
+          <i class="material-icons">arrow_back</i>
+        <% end %>
+      <% end %></div>
       <div><h2>New Category</h2></div>
       <div><%= form.submit "Create" %></div>
     </div>
@@ -17,14 +17,8 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
   <div class="field">
-    <%= form.label :icon %>
-    <%= form.text_field :icon %>
-  </div>
-
-  <%# <div class="action">
-    <%= form.submit %>
-  <%# </div> %> 
+      <%= form.file_field :icon %>
+    </div>
   </div>
 <% end %>

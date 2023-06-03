@@ -1,6 +1,11 @@
 class PaymentsController < ApplicationController
   # before_action :authenticate_user!
 
+  def index
+    @group = Group.find(params[:group_id])
+    @payments = @group.payments.order(created_at: :desc)
+  end
+
   def new
     @payment = current_user.payments.new
     @group = Group.find(params[:group_id])
@@ -8,35 +13,26 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = current_user.payments.new(name: payment_params[:name], amount: payment_params[:amount])
+    @payment = Payment.new(name: payment_params[:name], amount: payment_params[:amount], author_id:current_user.id)
     @group = Group.find(params[:group_id])
 
 
     if @payment.save
-      redirect_to user_group_payments_path(@group, current_user), notice: 'Payment was successfully created.'
+      @payment_item = PaymentItem.new(payment_id: @payment.id, group_id: params[:payment_item][:group_id])
+      
+      if @payment_item.save
+        redirect_to user_group_path(current_user, @group), notice: 'Payment was successfully created.'
+      end
+      
+
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  def edit
-    @payment = Payment.find(params[:id])
-    @group = Group.find(params[:group_id])
-  end
-
-  def update
-    @payment = Payment.find(params[:id])
-    if @payment.update(payment_params)
-      redirect_to group_path(@payment.group), notice: 'Payment was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
   private
 
   def payment_params
-    # params.require(:payment).permit(:name, :amount, :author_id, groups: {})
     params.require(:payment_item).permit!
   end
 end
