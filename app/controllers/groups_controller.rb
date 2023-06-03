@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     @user = current_user
-    @groups = Group.all.includes(:payments)
+    @groups = current_user.groups.all.includes(:payments)
   end
 
   def show
