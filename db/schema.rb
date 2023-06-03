@@ -10,16 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_090036) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_174722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
-    t.string "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "icon"
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
@@ -38,9 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_090036) do
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_id", null: false
     t.index ["author_id"], name: "index_payments_on_author_id"
-    t.index ["group_id"], name: "index_payments_on_group_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,9 +85,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_090036) do
     t.string "role", default: "user", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "groups", "users"
   add_foreign_key "payment_items", "groups"
   add_foreign_key "payment_items", "payments"
-  add_foreign_key "payments", "groups"
   add_foreign_key "payments", "users", column: "author_id"
 end

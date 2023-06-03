@@ -1,6 +1,18 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<header>
+    <div class="title">
+      <div ><%= link_to(:back) do %>
+        <%= content_tag(:div) do %>
+          <i class="material-icons">arrow_back</i>
+        <% end %>
+      <% end %></div>
+      <div><h2>login</h2></div>
+      <div><%= f.submit "Log in" %></div>
+    </div>
+  </header>
+
+  <div class="form-body">
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -17,9 +29,6 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
 <% end %>
 
