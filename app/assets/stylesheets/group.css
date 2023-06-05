@@ -38,6 +38,18 @@
   font-size: 20px;
 }
 
+.new-category-button > div {
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
 /* show folder for payment */
 
 .group_card {

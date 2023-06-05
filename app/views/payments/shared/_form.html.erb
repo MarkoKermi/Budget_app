@@ -1,18 +1,18 @@
-
 <%= form_with model: [current_user, @group, Payment.new], url: user_group_payments_path(current_user, @group) do |form| %>
 
-
 <header>
-    <div class="title">
-      <div ><%= link_to(:back) do %>
-        <%= content_tag(:div) do %>
-          <i class="material-icons">BACK</i>
-        <% end %>
+  <div class="title">
+    <div><%= link_to(:back) do %>
+      <%= content_tag(:div) do %>
+      <i class="material-icons">BACK</i>
+      <% end %>
       <% end %></div>
-      <div><h2>New Payment</h2></div>
-      <div><%= form.submit "Submit" %></div>
+    <div>
+      <h2>New Payment</h2>
     </div>
-  </header>
+    <div><%= form.submit "Submit" %></div>
+  </div>
+</header>
 
 <div class="form-body">
   <%= form_with url: user_group_payments_path(current_user, group_id:@group.id), method: :post,
@@ -21,21 +21,15 @@
     <%= f.text_field :name, required:true,
     placeholder:'Name',class:'custom-form-field-text' %>
   </div>
-  
+
   <div class="custom-form-field">
-  <%= f.number_field :amount, step:0.10,min:0 , required:true,
+    <%= f.number_field :amount, step:0.10,min:0 , required:true,
     placeholder:'Amount', class:'custom-form-field-text' %>
   </div>
 
   <div class="custom-form-field-selection">
-  <%= f.collection_select :group_id, @current_user.groups, :id, :name, { prompt: 'Select a group' }, required: true %>
+    <%= f.collection_select :group_id, @current_user.groups, :id, :name, { prompt: 'Select a group' }, required: true %>
   </div>
-  
-
-  <%# <div class="custom-login-actions">
-    <%= f.submit 'Create',class:'blue-button' %>
-  <%# </div>  %>
-   
   <% end %>
   <% end %>
 </div>

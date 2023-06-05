@@ -1,6 +1,4 @@
 class PaymentsController < ApplicationController
-  # before_action :authenticate_user!
-
   def index
     @group = Group.find(params[:group_id])
     @payments = @group.payments.order(created_at: :desc)
