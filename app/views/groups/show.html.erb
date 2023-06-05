@@ -1,18 +1,15 @@
 <header>
-  <div class="title">
-    <div><%= link_to user_groups_path do %>
+    <div class="title">
+      <div><%= link_to user_groups_path do %>
       <%= content_tag(:div) do %>
       <i class="material-icons">BACK</i>
       <% end %>
       <% end %></div>
-    <div>
-      <h2><%=@group.name%></h2>
+      <div><h2><%=@group.name%></h2></div>
+       <div><%= link_to "Add a new transaction", new_user_group_payment_path(current_user,@group), class: "button_text" %>
+  </div>
     </div>
-  </div>
-  <div>
-    <button><%= link_to "Add a new transaction", new_user_group_payment_path(current_user,@group), class: "button_text" %></button>
-  </div>
-</header>
+  </header>
 
 <div class="group_holder">
   <div class="group_card">

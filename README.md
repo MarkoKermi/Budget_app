@@ -96,7 +96,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd desired-folder
-  git clone https://github.com/ram1117/spendtracker
+  git clone https://github.com/MarkoKermi/Budget_app
 ```
 
 ### Install
@@ -104,7 +104,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  cd spendtracker
+  cd budgetapp
   bundle install
 ```
 
@@ -132,12 +132,13 @@ You can deploy this project on Render. Please follow [this render deployment gui
 
 <!-- AUTHORS -->
 
-## 👥 Authors <a name="authors"></a>
+## 👥 Author <a name="author"></a>
 
 👤 **Marko Kermichiev**
 
 - GitHub: [MarkoKermi](https://github.com/MarkoKermi)
 - LinkedIn: [Marko Kermichiev](https://www.linkedin.com/in/marko-kermichiev/)
+- Twiter: [Marko Kermichiev](https://twitter.com/MarkoKerm)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -6,6 +6,4 @@ class Payment < ApplicationRecord
   validates :amount, presence: true
   validates :name, presence: true
 
-  # validates :user_id, presence: true
-  # validates :group_id, presence: true
 end
