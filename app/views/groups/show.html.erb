@@ -1,10 +1,10 @@
 <header>
     <div class="title">
-      <div><%= link_to user_groups_path do %>
-      <%= content_tag(:div) do %>
-      <i class="material-icons">BACK</i>
-      <% end %>
-      <% end %></div>
+      <div>
+        <%= link_to user_groups_path do %>
+          <%= image_tag 'back.svg' %>
+        <% end %>
+      </div>
       <div><h2><%=@group.name%></h2></div>
        <div><%= link_to "Add a new transaction", new_user_group_payment_path(current_user,@group), class: "button_text" %>
   </div>
