@@ -2,11 +2,11 @@
 
 <header>
     <div class="title">
-      <div ><%= link_to(:back) do %>
-        <%= content_tag(:div) do %>
-          <i class="material-icons">BACK</i>
+      <div>
+        <%= link_to (:back) do %>
+          <%= image_tag 'back.svg' %>
         <% end %>
-      <% end %></div>
+      </div>
       <div><h2>login</h2></div>
       <div><%= f.submit "Log in" %></div>
     </div>
