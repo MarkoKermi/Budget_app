@@ -73,7 +73,7 @@
 
 ## 🚀 Live Link <a name="live-demo"></a>
 
-- [Live Link](https://budgetapp-9par.onrender.com)
+- [Live Link](https://tranquil-escarpment-35125.herokuapp.com/)
 
 )
 
