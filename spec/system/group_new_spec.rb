@@ -5,7 +5,7 @@ describe 'Group new page', type: :feature do
     @user = User.create(
       name: 'Username',
       email: 'user@gmail.com',
-      password: 'password',
+      password: 'password'
     )
 
     visit user_groups_path(user_id: @user.id)
@@ -20,12 +20,11 @@ describe 'Group new page', type: :feature do
   it 'I can see the Create button' do
     expect(page).to have_button('Create')
   end
-  
+
   it 'I can create a new group' do
     fill_in 'new_group_name', with: 'Test Group'
     attach_file 'new_group_icon', Rails.root.join('spec', 'fixtures', 'img', 'test.png')
     click_button 'Create'
     expect(page).to have_current_path user_groups_path(user_id: @user.id)
   end
-  
 end

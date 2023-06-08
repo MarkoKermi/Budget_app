@@ -1,10 +1,15 @@
-
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :feature do
   before(:each) do
-    @user = User.create(name: 'Test user', email: 'test444@gmail.com', password: '123456', password_confirmation: '123456',
-                        confirmation_token: nil, confirmed_at: Time.now)
+    @user = User.create(
+      name: 'Test user',
+      email: 'test444@gmail.com',
+      password: '123456',
+      password_confirmation: '123456',
+      confirmation_token: nil,
+      confirmed_at: Time.now
+    )
   end
   describe 'sign in page' do
     scenario 'should have a sign up link' do
@@ -37,4 +42,3 @@ RSpec.describe 'Users', type: :feature do
     end
   end
 end
-
