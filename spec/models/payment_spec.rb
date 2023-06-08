@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe Payment, type: :model do
   subject do
     Payment.new(
-      name: 'test spending',
+      name: 'test payments',
       amount: 10.50,
       author_id: User.first
     )
   end
 
-  describe 'check spendign invalidity' do
+  describe 'check payment invalidity' do
     it 'is invalid with invalid name' do
       subject.name = nil
       expect(subject).to_not be_valid

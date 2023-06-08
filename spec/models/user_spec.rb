@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'cheack user invalidity' do
+  describe 'check user invalidity' do
     it 'is invalid with invalid name' do
       subject.name = nil
       expect(subject).to_not be_valid
