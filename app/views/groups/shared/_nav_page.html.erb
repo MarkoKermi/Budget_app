@@ -1,0 +1,15 @@
+<header>
+  <div class="title">
+    <div></div>
+    <div><h2>Categories</h2></div>
+    <div></div>
+  </div>
+
+  <nav>
+  <ul>
+    <li>
+      <%= link_to 'logout', destroy_user_session_path, data: {turbo_method: :delete}  %>
+    </li>
+  </ul>
+</nav>
+</header>
